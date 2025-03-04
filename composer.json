@@ -1,0 +1,40 @@
+{
+    "name": "straylightagency/php-fonts",
+    "description": "Helper to rend HTML tags to load fonts from services like Google Fonts or Bunny Fonts",
+    "keywords": [
+        "fonts",
+        "bunny-fonts",
+        "google-fonts"
+    ],
+    "homepage": "https://github.com/straylightagency/php-fonts",
+    "license": "MIT",
+    "type": "library",
+    "authors": [
+        {
+            "name": "Anthony Pauwels",
+            "email": "anthony@straylightagency.be",
+            "homepage": "https://straylightagency.be",
+            "role": "Developer"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "Straylightagency\\PhpFonts\\": "src"
+        }
+    },
+    "require": {
+        "php":">=8.3.0"
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true,
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Straylight\\Fonts\\Laravel\\FontsServiceProvider"
+            ],
+            "aliases": {
+                "Fonts": "Straylight\\Fonts\\Laravel\\Fonts"
+            }
+        }
+    }
+}
