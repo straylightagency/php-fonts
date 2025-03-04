@@ -15,6 +15,7 @@ If you do not use auto-discovery, add the ServiceProvider to the providers array
 ```php
 Straylight\Fonts\Laravel\FontsServiceProvider::class,
 ```
+
 ## Usage
 
 This package can be used without Laravel. Just instantiate the `FontsManager` class as a regular object.
@@ -86,15 +87,15 @@ Load a font using the BunnyFonts driver
 FontsManager::bunny(string $font_name, string|array $font_weights = [ Fonts::regular ] ): FontsManager
 ```
 
-### Requirement
+## Requirement
 
 PHP 8.3 or above
 
-### See also
+## See also
 
 - [Google Fonts](https://fonts.google.com/)
 - [Bunny Fonts](https://fonts.bunny.net/)
-- 
+
 ## Credits
 
 - [Anthony Pauwels](https://github.com/anthonypauwels)
