@@ -101,6 +101,7 @@ PHP 8.3 or above
 
 - [Google Fonts](https://fonts.google.com/)
 - [Bunny Fonts](https://fonts.bunny.net/)
+- [FontAwesome](https://fontawesome.com/)
 
 ## Credits
 
