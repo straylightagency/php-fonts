@@ -1,16 +1,16 @@
 <?php
 
-namespace Straylight\Fonts;
+namespace Straylightagency\Fonts;
 
 use Closure;
 use LogicException;
-use Straylight\Fonts\Drivers\BunnyDriver;
-use Straylight\Fonts\Drivers\GoogleDriver;
+use Straylightagency\Fonts\Drivers\BunnyDriver;
+use Straylightagency\Fonts\Drivers\GoogleDriver;
 
 /**
  * List fonts weights
  *
- * @package Straylight\Fonts
+ * @package Straylightagency\Fonts
  * @author Anthony Pauwels <anthony@straylightagency.be>
  */
 abstract class Fonts

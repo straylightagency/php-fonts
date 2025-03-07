@@ -1,18 +1,19 @@
 <?php
 
-namespace Straylight\Fonts;
+namespace Straylightagency\Fonts;
 
 use Closure;
 use LogicException;
-use Straylight\Fonts\Drivers\BunnyDriver;
-use Straylight\Fonts\Drivers\GoogleDriver;
-use Straylight\Fonts\Drivers\GoogleV2Driver;
+use Straylightagency\Fonts\Drivers\BunnyDriver;
+use Straylightagency\Fonts\Drivers\GoogleDriver;
+use Straylightagency\Fonts\Drivers\GoogleV2Driver;
+use Straylightagency\PhpFonts\Drivers\AdobeFontsDriver;
 use Straylightagency\PhpFonts\Drivers\FontAwesomeDriver;
 
 /**
  * Helper class that help to render HTML tags to load fonts from services like Google Fonts or Bunny Fonts.
  *
- * @package Straylight\Fonts
+ * @package Straylightagency\Fonts
  * @author Anthony Pauwels <anthony@straylightagency.be>
  */
 class FontsManager
@@ -31,6 +32,7 @@ class FontsManager
         GoogleDriver::class => 'google',
         GoogleV2Driver::class => 'google-v2',
         BunnyDriver::class => 'bunny',
+        AdobeFontsDriver::class => 'adobe',
         FontAwesomeDriver::class => 'fontawesome',
     ];
 
@@ -95,7 +97,8 @@ class FontsManager
             GoogleDriver::class, 'google' => $this->createGoogleDriver(),
             GoogleV2Driver::class, 'google-v2' => $this->createGoogleV2Driver(),
             BunnyDriver::class, 'bunny' => $this->createBunnyDriver(),
-            FontAwesomeDriver::class => $this->createFontAwesomeDriver(),
+            AdobeFontsDriver::class, 'adobe' => $this->createAdobeFontsDriver(),
+            FontAwesomeDriver::class, 'fontawesome' => $this->createFontAwesomeDriver(),
             default => $this->createCustomDriver( $driver_name ),
         };
 
@@ -154,6 +157,17 @@ class FontsManager
      * @param string $kit_id
      * @return $this
      */
+    public function adobe(string $kit_id): static
+    {
+        $this->use( AdobeFontsDriver::class )->load( $kit_id );
+
+        return $this;
+    }
+
+    /**
+     * @param string $kit_id
+     * @return $this
+     */
     public function fontawesome(string $kit_id): static
     {
         $this->use( FontAwesomeDriver::class )->load( $kit_id );
@@ -183,6 +197,14 @@ class FontsManager
     protected function createBunnyDriver(): BunnyDriver
     {
         return new BunnyDriver;
+    }
+
+    /**
+     * @return AdobeFontsDriver
+     */
+    protected function createAdobeFontsDriver(): AdobeFontsDriver
+    {
+        return new AdobeFontsDriver;
     }
 
     /**

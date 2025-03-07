@@ -1,16 +1,16 @@
 <?php
 
-namespace Straylight\Fonts\Drivers;
+namespace Straylightagency\Fonts\Drivers;
 
-use Straylight\Fonts\Driver;
-use Straylight\Fonts\Fonts;
+use Straylightagency\Fonts\Driver;
+use Straylightagency\Fonts\Fonts;
 
 /**
  * Load fonts through the Google Fonts service using the newest API "css2".
  *
  * @see https://fonts.google.com/
  *
- * @package Straylight\Fonts
+ * @package Straylightagency\Fonts
  * @author Anthony Pauwels <anthony@straylightagency.be>
  */
 class GoogleV2Driver extends Driver

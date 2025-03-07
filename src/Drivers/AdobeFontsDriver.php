@@ -8,7 +8,7 @@ use Straylightagency\Fonts\Fonts;
 /**
  *
  */
-class FontAwesomeDriver extends Driver
+class AdobeFontsDriver extends Driver
 {
     /** @var array */
     protected array $kits = [];
@@ -44,7 +44,7 @@ class FontAwesomeDriver extends Driver
         $kits = array_map( function ( string $id ) {
             unset( $this->kits[ $id ] );
 
-            return '<script src="https://kit.fontawesome.com/' . $id . '.js" crossorigin="anonymous"></script>';
+            return '<link rel="stylesheet" href="https://use.typekit.net/' . $id . '.css">';
         }, $this->kits );
 
         $buffer.= implode( "\n", $kits );
@@ -57,6 +57,6 @@ class FontAwesomeDriver extends Driver
      */
     public function preconnect(): string
     {
-        return '<link rel="preconnect" href="https://kit.fontawesome.com">' . "\n";
+        return '<link rel="preconnect" href="https://use.typekit.net">' . "\n";
     }
 }

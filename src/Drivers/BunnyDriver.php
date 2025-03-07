@@ -1,16 +1,16 @@
 <?php
 
-namespace Straylight\Fonts\Drivers;
+namespace Straylightagency\Fonts\Drivers;
 
-use Straylight\Fonts\Driver;
-use Straylight\Fonts\Fonts;
+use Straylightagency\Fonts\Driver;
+use Straylightagency\Fonts\Fonts;
 
 /**
  * Load fonts through the Bunny Fonts service
  *
  * @see https://fonts.bunny.net/
  *
- * @package Straylight\Fonts
+ * @package Straylightagency\Fonts
  * @author Anthony Pauwels <anthony@straylightagency.be>
  */
 class BunnyDriver extends Driver

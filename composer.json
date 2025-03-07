@@ -4,7 +4,9 @@
     "keywords": [
         "fonts",
         "bunny-fonts",
-        "google-fonts"
+        "google-fonts",
+        "adobe-fonts",
+        "fontawesome"
     ],
     "homepage": "https://github.com/straylightagency/php-fonts",
     "license": "MIT",
@@ -30,10 +32,10 @@
     "extra": {
         "laravel": {
             "providers": [
-                "Straylight\\Fonts\\Laravel\\FontsServiceProvider"
+                "Straylightagency\\Fonts\\Laravel\\FontsServiceProvider"
             ],
             "aliases": {
-                "Fonts": "Straylight\\Fonts\\Laravel\\Fonts"
+                "Fonts": "Straylightagency\\Fonts\\Laravel\\Fonts"
             }
         }
     }

@@ -1,11 +1,11 @@
 <?php
 
-namespace Straylight\Fonts;
+namespace Straylightagency\Fonts;
 
 /**
  * Abstract driver class
  *
- * @package Straylight\Fonts
+ * @package Straylightagency\Fonts
  * @author Anthony Pauwels <anthony@straylightagency.be>
  */
 abstract class Driver

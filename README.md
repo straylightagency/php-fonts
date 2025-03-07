@@ -1,6 +1,6 @@
 # PHP Fonts Manager
 
-Helper to rendering HTML tags to load fonts from services like Google Fonts or Bunny Fonts.
+Helper to rendering HTML tags to load fonts from services like Google Fonts, Bunny Fonts, Adobe Fonts or FontAwesome.
 
 ## Installation
 
@@ -13,7 +13,7 @@ composer require straylightagency/fonts
 
 If you do not use auto-discovery, add the ServiceProvider to the providers array in `bootstrap/providers.php` :
 ```php
-Straylight\Fonts\Laravel\FontsServiceProvider::class,
+Straylightagency\Fonts\Laravel\FontsServiceProvider::class,
 ```
 
 ## Usage
@@ -88,7 +88,12 @@ Load a font using the BunnyFonts driver
 FontsManager::bunny(string $font_name, string|array $font_weights = [ Fonts::regular ]): FontsManager
 ```
 
-Load an icon font using the FontAwesome driver
+Load a fonts kit from Adobe Fonts
+```php
+FontsManager::adobe(string $kit_id): FontsManager
+```
+
+Load an icons kit using the FontAwesome driver
 ```php
 FontsManager::fontawesome(string $kit_id): FontsManager
 ```
@@ -101,6 +106,7 @@ PHP 8.3 or above
 
 - [Google Fonts](https://fonts.google.com/)
 - [Bunny Fonts](https://fonts.bunny.net/)
+- [Adobe Fonts](https://fonts.adobe.com/)
 - [FontAwesome](https://fontawesome.com/)
 
 ## Credits

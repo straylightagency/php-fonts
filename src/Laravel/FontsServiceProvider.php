@@ -1,14 +1,14 @@
 <?php
 
-namespace Straylight\Fonts\Laravel;
+namespace Straylightagency\Fonts\Laravel;
 
 use Illuminate\Support\ServiceProvider;
-use Straylight\Fonts\FontsManager;
+use Straylightagency\Fonts\FontsManager;
 
 /**
  * Register the FontsManager inside the Laravel Dependency Container
  *
- * @package Straylight\Fonts
+ * @package Straylightagency\Fonts
  * @author Anthony Pauwels <anthony@straylightagency.be>
  */
 class FontsServiceProvider extends ServiceProvider

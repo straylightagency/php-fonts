@@ -1,11 +1,11 @@
 <?php
 
-namespace Straylight\Fonts\Laravel;
+namespace Straylightagency\Fonts\Laravel;
 
 use Closure;
 use Illuminate\Support\Facades\Facade;
-use Straylight\Fonts\FontsManager;
-use Straylight\Fonts\Fonts as BaseFonts;
+use Straylightagency\Fonts\FontsManager;
+use Straylightagency\Fonts\Fonts as BaseFonts;
 
 /**
  * Facade.
@@ -20,9 +20,10 @@ use Straylight\Fonts\Fonts as BaseFonts;
  * @method static FontsManager google(string $font_name, string|array $font_weights = [ BaseFonts::regular ])
  * @method static FontsManager googleV2(string $font_name, string|array $font_weights = [ BaseFonts::regular ])
  * @method static FontsManager bunny(string $font_name, string|array $font_weights = [ BaseFonts::regular ])
+ * @method static FontsManager adobe(string $kit_id)
  * @method static FontsManager fontawesome(string $kit_id)
  *
- * @package Straylight\Fonts
+ * @package Straylightagency\Fonts
  * @author Anthony Pauwels <anthony@straylightagency.be>
  */
 class Fonts extends Facade
