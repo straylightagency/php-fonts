@@ -7,6 +7,7 @@ use LogicException;
 use Straylight\Fonts\Drivers\BunnyDriver;
 use Straylight\Fonts\Drivers\GoogleDriver;
 use Straylight\Fonts\Drivers\GoogleV2Driver;
+use Straylightagency\PhpFonts\Drivers\FontAwesomeDriver;
 
 /**
  * Helper class that help to render HTML tags to load fonts from services like Google Fonts or Bunny Fonts.
@@ -30,6 +31,7 @@ class FontsManager
         GoogleDriver::class => 'google',
         GoogleV2Driver::class => 'google-v2',
         BunnyDriver::class => 'bunny',
+        FontAwesomeDriver::class => 'fontawesome',
     ];
 
     /**
@@ -93,6 +95,7 @@ class FontsManager
             GoogleDriver::class, 'google' => $this->createGoogleDriver(),
             GoogleV2Driver::class, 'google-v2' => $this->createGoogleV2Driver(),
             BunnyDriver::class, 'bunny' => $this->createBunnyDriver(),
+            FontAwesomeDriver::class => $this->createFontAwesomeDriver(),
             default => $this->createCustomDriver( $driver_name ),
         };
 
@@ -148,6 +151,17 @@ class FontsManager
     }
 
     /**
+     * @param string $kit_id
+     * @return $this
+     */
+    public function fontawesome(string $kit_id): static
+    {
+        $this->use( FontAwesomeDriver::class )->load( $kit_id );
+
+        return $this;
+    }
+
+    /**
      * @return GoogleDriver
      */
     protected function createGoogleDriver(): GoogleDriver
@@ -169,6 +183,14 @@ class FontsManager
     protected function createBunnyDriver(): BunnyDriver
     {
         return new BunnyDriver;
+    }
+
+    /**
+     * @return FontAwesomeDriver
+     */
+    protected function createFontAwesomeDriver(): FontAwesomeDriver
+    {
+        return new FontAwesomeDriver;
     }
 
     /**

@@ -30,17 +30,18 @@ Examples bellow are using Laravel Facade `Fonts`. The facade directly call the `
 
 ### In your views
 
-#### Print the tags based on the fonts you need through a driver :
+Print the tags based on the fonts you need through a driver :
 ```bladehtml
 @php
     Fonts::googleV2('Oswald', ['300', '400'])
          ->googleV2('Open Sans', ['300..800'])
          ->googleV2('Chakra Petch', 'ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700')
+         ->fontawesome('12b534g387')
          ->print();
 @endphp
 ```
 
-### API Documentation
+## API Documentation
 
 Define the driver to use by default when the method `load` is called.
 ```php
@@ -69,22 +70,27 @@ FontsManager::use(string $driver_name): Driver
 
 Load a font using the default driver that was set using `setDefault` method. By default, it's the `GoogleV2Driver`.
 ```php
-FontsManager::load(string $font_name, string|array $font_weights = [ Fonts::regular ] ): FontsManager
+FontsManager::load(string $font_name, string|array $font_weights = [ Fonts::regular ]): FontsManager
 ```
 
 Load a font using the Google Fonts driver
 ```php
-FontsManager::google(string $font_name, string|array $font_weights = [ Fonts::regular ] ): FontsManager
+FontsManager::google(string $font_name, string|array $font_weights = [ Fonts::regular ]): FontsManager
 ```
 
 Load a font using the Google Fonts V2 driver
 ```php
-FontsManager::googleV2(string $font_name, string|array $font_weights = [ Fonts::regular ] ): FontsManager
+FontsManager::googleV2(string $font_name, string|array $font_weights = [ Fonts::regular ]): FontsManager
 ```
 
 Load a font using the BunnyFonts driver
 ```php
-FontsManager::bunny(string $font_name, string|array $font_weights = [ Fonts::regular ] ): FontsManager
+FontsManager::bunny(string $font_name, string|array $font_weights = [ Fonts::regular ]): FontsManager
+```
+
+Load an icon font using the FontAwesome driver
+```php
+FontsManager::fontawesome(string $kit_id): FontsManager
 ```
 
 ## Requirement
