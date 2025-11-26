@@ -7,8 +7,8 @@ use LogicException;
 use Straylightagency\Fonts\Drivers\BunnyDriver;
 use Straylightagency\Fonts\Drivers\GoogleDriver;
 use Straylightagency\Fonts\Drivers\GoogleV2Driver;
-use Straylightagency\PhpFonts\Drivers\AdobeFontsDriver;
-use Straylightagency\PhpFonts\Drivers\FontAwesomeDriver;
+use Straylightagency\Fonts\Drivers\AdobeFontsDriver;
+use Straylightagency\Fonts\Drivers\FontAwesomeDriver;
 
 /**
  * Helper class that help to render HTML tags to load fonts from services like Google Fonts or Bunny Fonts.
@@ -49,12 +49,12 @@ class FontsManager
 
     /**
      * @param string $driver_name
-     * @param Closure $closureCall
+     * @param Closure $closure
      * @return $this
      */
-    public function withDriver(string $driver_name, Closure $closureCall): static
+    public function withDriver(string $driver_name, Closure $closure): static
     {
-        $this->customDrivers[ $driver_name ] = $closureCall;
+        $this->customDrivers[ $driver_name ] = $closure;
 
         return $this;
     }
@@ -62,12 +62,12 @@ class FontsManager
     /**
      * @return string
      */
-    public function generate(): string
+    public function render(): string
     {
         $buffer = '';
 
         foreach ( $this->drivers as $driver ) {
-            $buffer .= $driver->generate();
+            $buffer .= $driver->render();
         }
 
         return $buffer;
@@ -78,7 +78,7 @@ class FontsManager
      */
     public function print(): void
     {
-        echo $this->generate();
+        echo $this->render();
     }
 
     /**
@@ -159,7 +159,7 @@ class FontsManager
      */
     public function adobe(string $kit_id): static
     {
-        $this->use( AdobeFontsDriver::class )->load( $kit_id );
+        $this->use( AdobeFontsDriver::class )->kit( $kit_id );
 
         return $this;
     }
@@ -170,7 +170,7 @@ class FontsManager
      */
     public function fontawesome(string $kit_id): static
     {
-        $this->use( FontAwesomeDriver::class )->load( $kit_id );
+        $this->use( FontAwesomeDriver::class )->kit( $kit_id );
 
         return $this;
     }

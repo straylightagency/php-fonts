@@ -33,7 +33,7 @@ class GoogleV2Driver extends Driver
     /**
      * @return string
      */
-    public function generate(): string
+    public function render(): string
     {
         if ( empty( $this->fonts ) ) {
             return '';

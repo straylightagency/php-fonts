@@ -32,5 +32,5 @@ abstract class Driver
     /**
      * @return string
      */
-    abstract function generate(): string;
+    abstract function render(): string;
 }

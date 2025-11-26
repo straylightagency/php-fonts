@@ -1,12 +1,17 @@
 <?php
 
-namespace Straylightagency\PhpFonts\Drivers;
+namespace Straylightagency\Fonts\Drivers;
 
-use Straylightagency\Fonts\Driver;
 use Straylightagency\Fonts\Fonts;
+use Straylightagency\Fonts\Driver;
 
 /**
+ * Load icon fonts from FontAwesome service using a kit ID
  *
+ * @see https://fontawesome.com/
+ *
+ * @package Straylightagency\Fonts
+ * @author Anthony Pauwels <anthony@straylightagency.be>
  */
 class FontAwesomeDriver extends Driver
 {
@@ -20,7 +25,16 @@ class FontAwesomeDriver extends Driver
      */
     public function load(string $font_name, string|array $font_weights = [ Fonts::regular ] ): static
     {
-        $this->kits[ strtolower( $font_name ) ] = $font_name;
+        return $this->kit( $font_name );
+    }
+
+    /**
+     * @param string $kit_id
+     * @return $this
+     */
+    public function kit(string $kit_id): static
+    {
+        $this->kits[ $kit_id ] = $kit_id;
 
         return $this;
     }
@@ -28,7 +42,7 @@ class FontAwesomeDriver extends Driver
     /**
      * @return string
      */
-    public function generate(): string
+    public function render(): string
     {
         if ( empty( $this->kits ) ) {
             return '';

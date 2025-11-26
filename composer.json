@@ -1,6 +1,6 @@
 {
     "name": "straylightagency/php-fonts",
-    "description": "Helper to rend HTML tags to load fonts from services like Google Fonts or Bunny Fonts",
+    "description": "Helper to rend HTML tags to load fonts from services like Google Fonts, Adobe Fonts and Fontawesome",
     "keywords": [
         "fonts",
         "bunny-fonts",
@@ -21,7 +21,7 @@
     ],
     "autoload": {
         "psr-4": {
-            "Straylightagency\\PhpFonts\\": "src"
+            "Straylightagency\\Fonts\\": "src"
         }
     },
     "require": {
