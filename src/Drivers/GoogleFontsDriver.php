@@ -6,14 +6,14 @@ use Straylightagency\Fonts\Driver;
 use Straylightagency\Fonts\Fonts;
 
 /**
- * Load fonts through the Google Fonts service using the newest API "css2".
+ * Load fonts through the Google Fonts service using the older API.
  *
  * @see https://fonts.google.com/
  *
  * @package Straylightagency\Fonts
  * @author Anthony Pauwels <anthony@straylightagency.be>
  */
-class GoogleV2Driver extends Driver
+class GoogleFontsDriver extends Driver
 {
     /** @var array */
     protected array $fonts = [];
@@ -33,7 +33,7 @@ class GoogleV2Driver extends Driver
     /**
      * @return string
      */
-    public function render(): string
+    public function toHtml(): string
     {
         if ( empty( $this->fonts ) ) {
             return '';
@@ -47,35 +47,27 @@ class GoogleV2Driver extends Driver
             $this->isInitialized( true );
         }
 
-        $buffer .= '<link rel="stylesheet" href="https://fonts.googleapis.com/css2?';
+        $buffer .= '<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=';
 
         foreach ( $this->fonts as $name => $weights ) {
             if ( is_array( $weights ) ) {
-                $styles = [];
+                /** Allow to create a range of weights like 300...600 = 300,400,500,600, */
+                if ( str_contains( $weights[0], '..' ) ) {
+                    [ $start, $end ] = explode('..', $weights[0] );
 
-                $styles[] = 'ital';
-                $styles[] = 'wght';
+                    $weights = range( $start, $end, 100 );
+                }
 
-                usort( $weights, function (string $a, string $b) {
-                    $is_italic_a = str_contains( $a, 'i' ) ? 1 : 0;
-                    $is_italic_b = str_contains( $b, 'i' ) ? 1 : 0;
-
-                    return $is_italic_a > $is_italic_b;
-                } );
-
-                /** Create the string for the weights of the font */
-                $weights = array_map( fn (string $weight) => ( str_contains( $weight, 'i' ) ? '1' : '0' ) . ',' . str_replace('i', '', $weight), $weights );
-
-                $weights = implode( ',', $styles ) . '@' . implode( ';', $weights );
+                $weights = implode( ',', $weights );
             }
 
             /** Compact every element into a query string */
-            $fonts[] = 'family=' . $name . ':' . $weights;
+            $fonts[] = $name . ':' . $weights;
 
             unset( $this->fonts[ $name ] );
         }
 
-        return $buffer . implode('&', $fonts ) . '&display=swap">' . "\n";
+        return $buffer . implode('|', $fonts ) . '&display=swap">' . "\n";
     }
 
     /**

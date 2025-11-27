@@ -13,7 +13,7 @@ use Straylightagency\Fonts\Fonts as BaseFonts;
  *
  * @method static FontsManager setDefault(string $driver_name)
  * @method static FontsManager withDriver(string $driver_name, Closure $closure)
- * @method static FontsManager render()
+ * @method static FontsManager toHtml()
  * @method static FontsManager print()
  * @method static FontsManager use(string $driver_name)
  * @method static FontsManager load(string $font_name, string|array $font_weights = [ BaseFonts::regular ])

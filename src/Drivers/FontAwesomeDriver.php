@@ -42,7 +42,7 @@ class FontAwesomeDriver extends Driver
     /**
      * @return string
      */
-    public function render(): string
+    public function toHtml(): string
     {
         if ( empty( $this->kits ) ) {
             return '';

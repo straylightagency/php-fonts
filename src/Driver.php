@@ -32,5 +32,5 @@ abstract class Driver
     /**
      * @return string
      */
-    abstract function render(): string;
+    abstract function toHtml(): string;
 }

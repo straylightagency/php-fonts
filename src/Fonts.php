@@ -4,8 +4,8 @@ namespace Straylightagency\Fonts;
 
 use Closure;
 use LogicException;
-use Straylightagency\Fonts\Drivers\BunnyDriver;
-use Straylightagency\Fonts\Drivers\GoogleDriver;
+use Straylightagency\Fonts\Drivers\BunnyFontsDriver;
+use Straylightagency\Fonts\Drivers\GoogleFontsDriver;
 
 /**
  * List fonts weights

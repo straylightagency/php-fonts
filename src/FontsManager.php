@@ -3,10 +3,9 @@
 namespace Straylightagency\Fonts;
 
 use Closure;
-use LogicException;
-use Straylightagency\Fonts\Drivers\BunnyDriver;
-use Straylightagency\Fonts\Drivers\GoogleDriver;
-use Straylightagency\Fonts\Drivers\GoogleV2Driver;
+use Straylightagency\Fonts\Drivers\BunnyFontsDriver;
+use Straylightagency\Fonts\Drivers\GoogleFontsDriver;
+use Straylightagency\Fonts\Drivers\GoogleFontsV2Driver;
 use Straylightagency\Fonts\Drivers\AdobeFontsDriver;
 use Straylightagency\Fonts\Drivers\FontAwesomeDriver;
 
@@ -29,14 +28,16 @@ class FontsManager
 
     /** @var array|string[] */
     const array DRIVERS_CLASSES = [
-        GoogleDriver::class => 'google',
-        GoogleV2Driver::class => 'google-v2',
-        BunnyDriver::class => 'bunny',
+        GoogleFontsDriver::class => 'google',
+        GoogleFontsV2Driver::class => 'google-v2',
+        BunnyFontsDriver::class => 'bunny',
         AdobeFontsDriver::class => 'adobe',
         FontAwesomeDriver::class => 'fontawesome',
     ];
 
     /**
+     * Define the default driver used
+     *
      * @param string $driver_name
      * @return $this
      */
@@ -48,6 +49,8 @@ class FontsManager
     }
 
     /**
+     * Set a new driver in the manager
+     *
      * @param string $driver_name
      * @param Closure $closure
      * @return $this
@@ -60,28 +63,45 @@ class FontsManager
     }
 
     /**
+     * Generate the HTML code
+     *
      * @return string
      */
-    public function render(): string
+    public function toHtml(): string
     {
         $buffer = '';
 
+        /** @var Driver $driver */
         foreach ( $this->drivers as $driver ) {
-            $buffer .= $driver->render();
+            $buffer .= $driver->toHtml();
         }
 
         return $buffer;
     }
 
     /**
+     * Print the generated HTML code
+     *
      * @return void
      */
     public function print(): void
     {
-        echo $this->render();
+        echo $this->toHtml();
     }
 
     /**
+     * Print the HTML code of the class is cast to string
+     *
+     * @return string
+     */
+    public function __toString(): string
+    {
+        return $this->toHtml();
+    }
+
+    /**
+     * Get a driver by his name
+     *
      * @param string $driver_name
      * @return Driver
      */
@@ -94,9 +114,9 @@ class FontsManager
         }
 
         $driver = match ($driver_name) {
-            GoogleDriver::class, 'google' => $this->createGoogleDriver(),
-            GoogleV2Driver::class, 'google-v2' => $this->createGoogleV2Driver(),
-            BunnyDriver::class, 'bunny' => $this->createBunnyDriver(),
+            GoogleFontsDriver::class, 'google' => $this->createGoogleFontsDriver(),
+            GoogleFontsV2Driver::class, 'google-v2' => $this->createGoogleFontsV2Driver(),
+            BunnyFontsDriver::class, 'bunny' => $this->createBunnyFontsDriver(),
             AdobeFontsDriver::class, 'adobe' => $this->createAdobeFontsDriver(),
             FontAwesomeDriver::class, 'fontawesome' => $this->createFontAwesomeDriver(),
             default => $this->createCustomDriver( $driver_name ),
@@ -106,6 +126,8 @@ class FontsManager
     }
 
     /**
+     * Load a font through the default driver
+     *
      * @param string $font_name
      * @param string|array $font_weights
      * @return $this
@@ -118,42 +140,50 @@ class FontsManager
     }
 
     /**
+     * Load a Google Font
+     *
      * @param string $font_name
      * @param string|array $font_weights
      * @return $this
      */
     public function google(string $font_name, string|array $font_weights = [ Fonts::regular ] ): static
     {
-        $this->use( GoogleDriver::class )->load( $font_name, $font_weights );
+        $this->use( GoogleFontsDriver::class )->load( $font_name, $font_weights );
 
         return $this;
     }
 
     /**
+     * Load a Google Font using the API V2
+     *
      * @param string $font_name
      * @param string|array $font_weights
      * @return $this
      */
     public function googleV2(string $font_name, string|array $font_weights = [ Fonts::regular ] ): static
     {
-        $this->use( GoogleV2Driver::class )->load( $font_name, $font_weights );
+        $this->use( GoogleFontsV2Driver::class )->load( $font_name, $font_weights );
 
         return $this;
     }
 
     /**
+     * Load a font using the Bunny Fonts service
+     *
      * @param string $font_name
      * @param string|array $font_weights
      * @return $this
      */
     public function bunny(string $font_name, string|array $font_weights = [ Fonts::regular ] ): static
     {
-        $this->use( BunnyDriver::class )->load( $font_name, $font_weights );
+        $this->use( BunnyFontsDriver::class )->load( $font_name, $font_weights );
 
         return $this;
     }
 
     /**
+     * Load a kit using the Adobe Fonts / Typekit service
+     *
      * @param string $kit_id
      * @return $this
      */
@@ -165,6 +195,8 @@ class FontsManager
     }
 
     /**
+     * Load an icon font using the Fontawesome service
+     *
      * @param string $kit_id
      * @return $this
      */
@@ -176,30 +208,38 @@ class FontsManager
     }
 
     /**
-     * @return GoogleDriver
+     * Create a new Google Fonts Driver
+     *
+     * @return GoogleFontsDriver
      */
-    protected function createGoogleDriver(): GoogleDriver
+    protected function createGoogleFontsDriver(): GoogleFontsDriver
     {
-        return new GoogleDriver;
+        return new GoogleFontsDriver;
     }
 
     /**
-     * @return GoogleV2Driver
+     * Create a new Google Fonts V2 Driver
+     *
+     * @return GoogleFontsV2Driver
      */
-    protected function createGoogleV2Driver(): GoogleV2Driver
+    protected function createGoogleFontsV2Driver(): GoogleFontsV2Driver
     {
-        return new GoogleV2Driver;
+        return new GoogleFontsV2Driver;
     }
 
     /**
-     * @return BunnyDriver
+     * Create a new Bunny Fonts Driver
+     *
+     * @return BunnyFontsDriver
      */
-    protected function createBunnyDriver(): BunnyDriver
+    protected function createBunnyFontsDriver(): BunnyFontsDriver
     {
-        return new BunnyDriver;
+        return new BunnyFontsDriver;
     }
 
     /**
+     * Create a new Adobe Fonts Driver
+     *
      * @return AdobeFontsDriver
      */
     protected function createAdobeFontsDriver(): AdobeFontsDriver
@@ -208,6 +248,8 @@ class FontsManager
     }
 
     /**
+     * Create a new FontAwesome Driver
+     *
      * @return FontAwesomeDriver
      */
     protected function createFontAwesomeDriver(): FontAwesomeDriver
@@ -216,6 +258,8 @@ class FontsManager
     }
 
     /**
+     * Create a new custom fonts driver
+     *
      * @param string $driver_name
      * @return Driver
      */
@@ -225,6 +269,6 @@ class FontsManager
             return $this->customAdapters[ $driver_name ]();
         }
 
-        throw new LogicException( sprintf( 'Custom Fonts Driver with name "%s" does not exist', $driver_name ), 500 );
+        throw new FontsException( sprintf( 'Custom Fonts Driver with name "%s" does not exist', $driver_name ), 500 );
     }
 }

@@ -13,7 +13,7 @@ use Straylightagency\Fonts\Fonts;
  * @package Straylightagency\Fonts
  * @author Anthony Pauwels <anthony@straylightagency.be>
  */
-class BunnyDriver extends Driver
+class BunnyFontsDriver extends Driver
 {
     /** @var array */
     protected array $fonts = [];
@@ -33,7 +33,7 @@ class BunnyDriver extends Driver
     /**
      * @return string
      */
-    public function render(): string
+    public function toHtml(): string
     {
         if ( empty( $this->fonts ) ) {
             return '';
