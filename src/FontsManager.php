@@ -265,10 +265,10 @@ class FontsManager
      */
     protected function createCustomDriver(string $driver_name): Driver
     {
-        if ( isset( $this->customAdapters[ $driver_name ] ) ) {
-            return $this->customAdapters[ $driver_name ]();
+        if ( isset( $this->customDrivers[ $driver_name ] ) ) {
+            return $this->customDrivers[ $driver_name ]();
         }
 
-        throw new FontsException( sprintf( 'Custom Fonts Driver with name "%s" does not exist', $driver_name ), 500 );
+        throw new FontsException( sprintf( 'Custom Fonts Driver with name "%s" does not exist.', $driver_name ), 500 );
     }
 }

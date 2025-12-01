@@ -69,7 +69,7 @@ FontsManager::withDriver(string $driver_name, Closure $closure);
 
 Get a driver by his name. If the driver has not already been instantiated, make a new instance.
 ```php
-FontsManager::use(string $driver_name): Driver
+FontsManager::use(string $driver_name);
 ```
 
 Load a font using the default driver that was set using `setDefault` method. By default, it's the `GoogleV2Driver`.
