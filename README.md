@@ -35,7 +35,6 @@ $fontsManager = new FontsManager;
 
 You can inject the object in your favorite dependency container.
 
-
 ### With Laravel
 
 The package provides by default a Facade for Laravel application. You can call methods directly using the Facade or use the alias instead.
@@ -59,17 +58,17 @@ Examples bellow are using Laravel Facade `Fonts`. The facade directly call the `
 
 Define the driver to use by default when the method `load` is called.
 ```php
-FontsManager::setDefault(string $driver_name);
+FontsManager::setDefault(driver_name: string);
 ```
 
 Add a new driver into the `FontsManager`. `$closure` must return an instance of the driver that extend the `Driver` class.
 ```php
-FontsManager::withDriver(string $driver_name, Closure $closure);
+FontsManager::withDriver(driver_name: string, closure: Closure);
 ```
 
 Get a driver by his name. If the driver has not already been instantiated, make a new instance.
 ```php
-FontsManager::use(string $driver_name);
+FontsManager::use(driver_name: string);
 ```
 
 Load a font using the default driver that was set using `setDefault` method. By default, it's the `GoogleV2Driver`.
