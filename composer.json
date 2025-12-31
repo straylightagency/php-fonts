@@ -1,5 +1,5 @@
 {
-    "name": "straylightagency/php-fonts",
+    "name": "straylightagency/fonts",
     "description": "Helper to rend HTML tags to load fonts from services like Google Fonts, Adobe Fonts and Fontawesome",
     "keywords": [
         "fonts",
