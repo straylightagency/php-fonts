@@ -21,6 +21,12 @@ Then add this line to your facades in `config/app.php` :
 'Fonts' => Straylightagency\Fonts\Laravel\Fonts::class,
 ```
 
+Use this artisan command to publish the `fonts.php` file inside your config folder :
+
+```shell
+php artisan vendor:publish --tag=fonts
+```
+
 ## Usage
 
 ### Without Laravel
